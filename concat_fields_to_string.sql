@@ -1,5 +1,5 @@
 /*
- * Query returns a single line of concatenated characters per group.
+ * Query returns a single line of concatenated characters per group. Easy way to build a string from fields in a group.
  */
 
 CREATE TABLE GROUP_BY_XML_EXAMPLE ([GROUP_ID] INT, [DESC_FIELD] VARCHAR(1));
@@ -43,7 +43,7 @@ SELECT * FROM GROUP_BY_XML_EXAMPLE
 SELECT
 	GBXE1.GROUP_ID,
 	(
-		SELECT GBXE0.DESC_FIELD + ''
+		SELECT GBXE0.DESC_FIELD + ''	-- empty '' added to remove xml tags.
 		FROM GROUP_BY_XML_EXAMPLE GBXE0
 		WHERE GBXE0.GROUP_ID = GBXE1.GROUP_ID
 		FOR XML PATH ('')
